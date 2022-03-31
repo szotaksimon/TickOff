@@ -1,0 +1,14 @@
+[Unit]
+Description=Tickoff API
+After=network.target
+
+[Service]
+User=dev
+Group=www-data
+
+WorkingDirectory=/var/www/api
+Environment="PATH=/var/www/api/venv/bin"
+ExecStart=/var/www/api/venv/bin/uwsgi --ini wsgi.ini
+
+[Install]
+WantedBy=multi-user.target

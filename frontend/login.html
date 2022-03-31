@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/login.css">
+    <title>Bejelentkezés</title>
+    <script defer src="resources/js/login.js"></script>
+    <!-- <script defer src="resources/js/login_toast.js"></script> -->
+</head>
+<body>
+    <div class="main">
+        <img src="resources/img/Logo.svg" alt="logo" id="logo">
+        <div class="side">
+            <p class="bejelentkezes-szoveg">Bejelentkezés</p>
+            <div class="inputok">
+                <input type="email" name="email-vagy-felhasznalo" id="email-vagy-felhasznalo-input" onmouseover="removeValidationColorFromEmailInput()" placeholder="E-mail-cím vagy felhasználónév" required><br>
+                <input type="password" name="jelszo" id="jelszo-input" onmouseover="removeValidationColorFromPasswordInput()" placeholder="Jelszó" required><br>
+                <button name="login" id="bejelentkezes-gomb" onclick="login()">Bejelentkezés</button><br>
+                <a href="#" id="forgot-password-link" onclick="showPasswordResetField()">Elfelejtettem a jelszavam</a>
+                <div id="password-reset-div">
+                    <input type="email" id="password-reset-input" onmouseover="removeValidationColorFromPasswordResetInput()" placeholder="E-mail-cím" required>
+                    <button name="password-reset" id="password-reset-button" onclick="passwordResetRequest()">Küldés</button>
+                </div>
+            </div>
+        </div>
+        <div class="regisztracio-link">
+            <p>Még nincs fiókja?</p>
+            <a href="register.html" id="link-szoveg">Hozzon létre egyet itt!</a>
+        </div>
+    </div>
+    <div id="snackbar"></div>
+
+    <div class="no-mobile">
+        <h1>Ez a kijelző méret sajnos nem támogatott.</h1>
+        <h2>Töltse le mobilapplikációnkat!</h2>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="resources/css/register.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <title>Regisztráció</title>
+        <script defer src="resources/js/register.js"></script>
+</head>
+<body>
+    <div class="main">
+        <img src="resources/img/Logo.svg" alt="logo" id="logo">
+        <div class="side">
+            <p class="regisztracio-szoveg">Regisztráció</p>
+            <div class="inputok">
+                <input type="text" name="vezeteknev" id="vezeteknev-input" placeholder="Vezetéknév" required>
+                <input type="text" name="keresztnev" id="keresztnev-input" placeholder="Keresztnév" required><br>
+                <input type="email" name="email" id="email-input" placeholder="E-mail-cím" required><br>
+                <input type="text" name="felhasznalo" id="felhasznalo-input" placeholder="Felhasználónév" required><br>
+                <input type="password" name="jelszo" id="jelszo-input" placeholder="Jelszó" onkeyup="jelszoErosseg()" required><i class="far fa-eye" id="togglePassword"></i><br>
+                <div id="jelszo-erosseg"></div>
+                <input type="password" name="jelszo-megint" id="jelszo-megint-input" placeholder="Jelszó mégegyszer" required><br>
+                <span id="szuletes-span">Születési dátum</span>
+                <input type="date" name="szuletes" id="szuletes-input" required><br>
+                <button name="regisztracio" id="regisztracio-gomb" onclick="register()">Regisztráció</button>
+            </div>
+        </div>
+        <div class="belepes-link">
+            <p>Már van fiókja?</p>
+            <a href="login.html" id="link-szoveg">Lépjen be itt!</a>
+        </div>
+    </div>
+    <div id="snackbar"></div>
+
+    <div class="no-mobile">
+        <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
+    </div>
+
+    
+</body>
+</html>
