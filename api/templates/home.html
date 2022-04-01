@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url('/resources/css/home.css') }}">
+    <title>TickOff</title>
+    <script defer src="{{ url('/resources/js/home.js') }}"></script>
+</head>
+
+<body>
+    <div class="side">
+        <img class="logo" src="{{ url('/resources/img/Logo.svg') }}" alt="logo" id="logo">
+        <div class="navigation">
+            <button onclick="navigationButton('day')" class="sidebarButton {{ 'active' if view=='day' else None }}" type="button" id="ma"><img src="{{ url('/resources/img/ma.svg') }}" id="ma-icon">Ma</button><br>
+            <button onclick="navigationButton('week')" class="sidebarButton {{ 'active' if view=='week' else None }}" type="button" id="ezahet"><img src="{{ url('/resources/img/ezahet.svg') }}" id="ezahet-icon">Ez a hét</button><br>
+            <button onclick="navigationButton('important')" class="sidebarButton {{ 'active' if view=='important' else None }}" type="button" id="fontos"><img src="{{ url('/resources/img/fontos.svg') }}" id="fontos-icon">Fontos</button><br>
+            <button onclick="navigationButton('done')" class="sidebarButton {{ 'active' if view=='done' else None }}" type="button" id="kesz"><img src="{{ url('/resources/img/kesz.svg') }}" id="kesz-icon">Kész</button><br>
+            <button onclick="navigationButton('postponed')" class="sidebarButton {{ 'active' if view=='postponed' else None }}" type="button" id="halasztott"><img src="{{ url('/resources/img/halasztott.svg') }}" id="halasztott-icon">Halasztott</button><br>
+            <button onclick="navigationButton('all')" class="sidebarButton {{ 'active' if view=='all' else None }}" type="button" id="osszes"><img src="{{ url('/resources/img/osszes.svg') }}" id="osszes-icon">Összes feladat</button><br>
+            <div class="spacer"></div>
+            <button type="button" id="beallitasok"><img src="{{ url('/resources/img/beallitas.svg') }}" id="kesz-icon">Beállítások</button><br>
+            <button type="button" id="kijelentkezes" onclick="logout()"><img src="{{ url('/resources/img/kijelentkezes.svg') }}" id="halasztott-icon">Kijelentkezés</button><br>
+        </div>
+        <!-- <div class="category-div">
+            <p>Kategóriák</p>
+            <hr class="category-hr">
+
+        </div> -->
+
+    </div>
+    <div class="navbar">
+        <div class="search">
+            <input type="text" name="kereses" id="kereses" placeholder="Keresés">
+            <img src="{{ url('/resources/img/kereses-icon.svg') }}" alt="kereses" id="kereses-icon">
+        </div>
+    </div>
+
+    <div class="content">
+        {% for todo in todos %}
+        <p>
+            {{todo.todo}}: {{todo.creation_date}}
+        </p>
+        {% endfor %} {% if todos|length == 0 %}
+        <p>Nincs találat</p>
+        {% endif %}
+    </div>
+
+
+    <div class="no-mobile">
+        <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
+    </div>
+</body>
+
+</html>

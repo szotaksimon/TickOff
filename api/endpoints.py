@@ -1,7 +1,6 @@
-
 from flask import request, make_response, abort, redirect
 from time import time
-from schemas import success_response, todo_shema, user_schema
+from schemas import success_response, todo_schema, user_schema
 import config
 
 
@@ -267,7 +266,7 @@ def json_create_todo():
     db.session.add(todo_element)
     db.session.commit()
 
-    return success_response(todo_shema(todo_element))
+    return success_response(todo_schema(todo_element))
 
 
 @app.route("/todo", methods=["GET"])
@@ -279,8 +278,8 @@ def json_get_todos():
 
     session, user = utils.auth_session()
     todos: "list[Todo]" = Todo.query.filter_by(user_id=user.id).all()
-    return success_response([todo_shema(t) for t in todos])
-    # így is lehet használni: map(todo_shema, todos)
+    return success_response([todo_schema(t) for t in todos])
+    # így is lehet használni: map(todo_schema, todos)
 
 
 @app.route("/todo", methods=["PATCH"])
@@ -304,10 +303,14 @@ def json_todo_change():
     todo.done = todo_done
     todo.category_id = category_id
     todo.todo = todo_text
+    if todo_done:
+        todo.end_date = utils.utc_now()
+    else:
+        todo.end_date = None
 
     db.session.commit()
 
-    return success_response(todo_shema(todo))
+    return success_response(todo_schema(todo))
 
 
 @app.route("/todo", methods=["DELETE"])

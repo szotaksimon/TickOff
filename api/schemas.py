@@ -9,7 +9,7 @@ def error_response(data):
     return {"result": "error", "data": data}
 
 
-def todo_shema(todo: Todo):
+def todo_schema(todo: Todo):
     return {
         "id": todo.id,
         "user_id": todo.user_id,

@@ -4,6 +4,23 @@ from models import User, Session
 from flask import request, abort
 from threading import Thread
 import config
+from time import time
+
+
+def utc_now():
+    return int(time())
+
+
+def utc_today():
+    now = utc_now()
+    start = now - now % 86400
+    end = start + 86400
+    return start, end
+
+
+def utc_week():
+    day_start, day_end = utc_today()
+    return day_start - 6 * 86400, day_end
 
 
 def check_password(password: str, user: User):
@@ -35,12 +52,15 @@ def validate_json(*keys) -> "tuple":
     return (json[key] for key in keys)
 
 
-def auth_session() -> "tuple[Session, User]":
+def auth_session(auto_abort=True) -> "tuple[Session, User]":
     token = request.cookies.get(config.SESSION_COOKIE_KEY)
 
     # no cookie present
     if token is None:
-        abort(401)
+        if auto_abort:
+            abort(401)
+        else:
+            return None, None
 
     token_hash = hash(token + config.SESSION_KEY_SALT)
     session: Session = Session.query.filter_by(token_hash=token_hash).first()
