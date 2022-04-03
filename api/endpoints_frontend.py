@@ -25,6 +25,12 @@ def get_todos_by_view(user: User, view: str) -> "list[Todo]":
     if view == "done":
         return [todo for todo in all if todo.done]
     
+    if view == "important":
+        return [todo for todo in all if todo.important]
+    
+    if view == "deadline":
+        return  [todo for todo in all if todo.end_date > todo.deadline]
+    
     return all
 
 
