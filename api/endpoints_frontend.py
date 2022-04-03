@@ -16,11 +16,11 @@ def get_todos_by_view(user: User, view: str) -> "list[Todo]":
 
     if view == "day":
         start, end = utils.utc_today()
-        return [t for t in all if t.creation_date >= start and t.creation_date <= end]
+        return [t for t in all if t.deadline >= start and t.deadline <= end]
 
     if view == "week":
         start, end = utils.utc_week()
-        return [t for t in all if t.creation_date >= start and t.creation_date <= end]
+        return [t for t in all if t.deadline >= start and t.deadline <= end]
 
     if view == "done":
         return [todo for todo in all if todo.done]
@@ -28,8 +28,9 @@ def get_todos_by_view(user: User, view: str) -> "list[Todo]":
     if view == "important":
         return [todo for todo in all if todo.important]
     
-    if view == "deadline":
-        return  [todo for todo in all if todo.end_date > todo.deadline]
+    if view == "postponed":
+        now = utils.utc_now()
+        return  [todo for todo in all if now > todo.deadline and not todo.done]
     
     return all
 
@@ -38,11 +39,8 @@ def get_todos_by_view(user: User, view: str) -> "list[Todo]":
 def home_page(view: str):
     session, user = utils.auth_session(auto_abort=False)
 
-    # hack: remote this
-    user = User.query.filter_by(username="admin").first()
-
     if user is None:
-        return redirect(config.APP_LOGIN_URL)
+        return redirect(f"{config.APP_URL}/login.html")
 
     todos = [schemas.todo_schema(t) for t in get_todos_by_view(user, view)]
 

@@ -1,5 +1,3 @@
-const API = "https://api.tickoff.hu";
-
 const toast = document.getElementById("snackbar");
 
 async function register() {
@@ -104,7 +102,7 @@ function jelszoErosseg() {
 
 async function sendRegisterRequest() {
   const formValues = getFormValues();
-  const result = await fetch(API + "/register", {
+  const result = await fetch(window.API_URL + "/register", {
     method: "POST",
     credentials: "include",
     headers: {

@@ -103,7 +103,7 @@ def json_register():
     db.session.commit()
 
     verification_url = (
-        f"https://api.tickoff.hu/verify-email?token={user.email_verification_token}"
+        f"{config.API_URL}/verify-email?token={user.email_verification_token}"
     )
 
     mailgun.send_email_verification_email(
@@ -130,7 +130,7 @@ def json_verify_email():
     user.email_verification_token = None
     db.session.commit()
 
-    return redirect("https://tickoff.hu/email_verified.html")
+    return redirect(f"{config.APP_URL}/email_verified.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -188,7 +188,7 @@ def json_password_reset_request():
     user.password_reset_token = token
     db.session.commit()
 
-    verification_url = f"https://api.tickoff.hu/password-reset?token={user.password_reset_token}"
+    verification_url = f"{config.API_URL}/password-reset?token={user.email_verification_token}"
 
     mailgun.send_password_reset_email(recipient=user.email, url=verification_url)
 

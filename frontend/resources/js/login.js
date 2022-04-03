@@ -1,5 +1,3 @@
-const API = "https://api.tickoff.hu"
-
 const toast = document.getElementById("snackbar")
 const pass_reset_div = document.getElementById("password-reset-div")
 const pass_reset_link = document.getElementById("forgot-password-link")
@@ -9,8 +7,7 @@ async function login() {
     const formValues = getFormValues()
     const {result, json} = await sendLoginRequest()
     if(result.status === 200) {
-        window.location.replace("home.html")
-    
+        window.location.replace(window.API_URL + "/home/day")
     } 
     if (json["data"] === "email not verified") {
         toast.className = "show"
@@ -37,7 +34,7 @@ async function login() {
 async function sendLoginRequest() {
 
     const formValues = getFormValues()
-    const result = await fetch(API + "/login", {
+    const result = await fetch(window.API_URL + "/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -66,7 +63,7 @@ async function passwordResetRequest(){
 async function sendPasswordResetRequest() {
 
     const formValues = getFormValues()
-    const result = await fetch(API + "/password-reset-request", {
+    const result = await fetch(window.API_URL + "/password-reset-request", {
         method: "POST",
         credentials: "include",
         headers: {
