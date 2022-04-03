@@ -252,7 +252,7 @@ def json_create_todo():
 
     session, user = utils.auth_session()
 
-    todo_text, category_id = utils.validate_json("todo", "categoryID")
+    todo_text, category_id, important = utils.validate_json("todo", "categoryID", "important")
 
     todo_element = Todo(
         user_id=user.id,
@@ -261,6 +261,7 @@ def json_create_todo():
         category_id=category_id,
         todo=todo_text,
         done=False,
+        important=important
     )
 
     db.session.add(todo_element)
@@ -288,8 +289,8 @@ def json_todo_change():
 
     session, user = utils.auth_session()
 
-    todo_id, todo_done, todo_text, category_id = utils.validate_json(
-        "id", "done", "todoText", "categoryID"
+    todo_id, todo_done, todo_text, category_id, important = utils.validate_json(
+        "id", "done", "todoText", "categoryID", "important"
     )
 
     todo: Todo = Todo.query.get(todo_id)
@@ -303,6 +304,7 @@ def json_todo_change():
     todo.done = todo_done
     todo.category_id = category_id
     todo.todo = todo_text
+    todo.important = important
     if todo_done:
         todo.end_date = utils.utc_now()
     else:

@@ -18,6 +18,7 @@ def todo_schema(todo: Todo):
         "end_date": todo.end_date,
         "todo": todo.todo,
         "done": todo.done,
+        "important": todo.important,
     }
 
 
