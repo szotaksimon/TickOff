@@ -9,6 +9,8 @@ ssh $REMOTE "sudo systemctl stop $SVC && sudo systemctl disable $SVC && sudo rm 
 ssh $REMOTE "rm -rf /var/www/api/*"
 
 # Copy files
+scp -r ./static $REMOTE:$API_DIR
+scp -r ./templates $REMOTE:$API_DIR
 scp ./*.{py,ini,service,txt} $REMOTE:$API_DIR
 scp ./.env $REMOTE:$API_DIR
 
