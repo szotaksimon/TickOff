@@ -34,6 +34,7 @@ class Todo(db.Model):
     todo = db.Column(VARCHAR(256))
     done = db.Column(BOOLEAN)
     important = db.Column(BOOLEAN)
+    deadline = db.Column(BIGINT, nullable=False)
 
 
 class Session(db.Model):

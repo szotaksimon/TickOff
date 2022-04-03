@@ -252,7 +252,7 @@ def json_create_todo():
 
     session, user = utils.auth_session()
 
-    todo_text, category_id, important = utils.validate_json("todo", "categoryID", "important")
+    todo_text, category_id, important, deadline = utils.validate_json("todo", "categoryID", "important", "deadline")
 
     todo_element = Todo(
         user_id=user.id,
@@ -261,7 +261,8 @@ def json_create_todo():
         category_id=category_id,
         todo=todo_text,
         done=False,
-        important=important
+        important=important,
+        deadline=deadline
     )
 
     db.session.add(todo_element)
