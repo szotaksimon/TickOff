@@ -188,7 +188,7 @@ def json_password_reset_request():
     user.password_reset_token = token
     db.session.commit()
 
-    verification_url = f"{config.API_URL}/password-reset?token={user.email_verification_token}"
+    verification_url = f"{config.API_URL}/password-reset?token={user.password_reset_token}"
 
     mailgun.send_password_reset_email(recipient=user.email, url=verification_url)
 
@@ -212,16 +212,12 @@ def json_password_reset():
         abort(401)
 
     new_password = utils.random_password()
-
-    # TODO: új jelszót küldeni e-mail-ben
-    print("New password:", new_password)
-
     new_password_hash = utils.salted_hash(new_password, user.password_salt)
-
     user.password_hash = new_password_hash
     db.session.commit()
 
-    return success_response("password reset successfully")
+    mailgun.send_new_password_email(recipient=user.email, new_password=new_password)
+    return redirect(f"{config.APP_URL}/password_reset_completed.html")
 
 
 @app.route("/logout", methods=["GET"])
