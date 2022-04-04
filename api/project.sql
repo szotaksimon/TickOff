@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 29, 2022 at 12:49 PM
+-- Generation Time: Apr 04, 2022 at 10:36 PM
 -- Server version: 8.0.28
 -- PHP Version: 7.3.33
 
@@ -63,22 +63,15 @@ CREATE TABLE `session` (
 --
 
 INSERT INTO `session` (`id`, `user_id`, `token_hash`) VALUES
-(32, 64, 'd30f5b398e0b93d6db6be770aa19d1978d73bf7eed687d155955070637142fed'),
-(34, 67, '056893a2cdcadff5d76f316c9283566a024184d166de2d8ef3e241da3a324890'),
-(35, 68, '159481f3ebb1990055daba960d05e38599fda387d0df9fe6d0963f5438030edb'),
-(36, 31, '02c04fcadfc0ca0673bd4cca2b48bdb7014f2d87d0325819dfda7df7435d7804'),
-(38, 31, '72342a8df75b129a0a3ccaae16e2e9a620dfde343e30788c7871065f8940a8db'),
-(40, 31, '580723a04f5fbfe9a5ce362cde2bbc4a2382783fc30a99559aa2a98d2b3a69fe'),
-(41, 31, 'ec4faa955c9a25e2318f2ba1a9953e72e3d86a1f6a5a7204ff9159353986c2c9'),
-(42, 31, 'c7ab4d4b65d11956c64412d330fc378058ca18408756132c7b9d719cdd1a73fe'),
-(43, 31, 'e31f168dc897c8dccc7649b7492dee1c2250ba64519ff2dd452e59dbef186935'),
-(44, 31, 'f1678599ea6bfb467463b62b3d95db4c1c9fee385e97edaef2208bfb20edde81'),
-(45, 31, 'f62e235c82a32e461db0ad57325ea262e26b0f080c93fa29d9562a21bb70d61c'),
-(46, 31, '138ace2f5cbc657848647d5d445e0564176052d8f16de8c028c593c01127c4de'),
-(47, 31, 'a364040eab546c2a23ea4c932b027f07659e6483883e3cb79cd2e94025de8402'),
-(48, 31, '94a982dc29c0cb8f9de01570a1ac7327bf9f46fb46ab1629a5a62dcac60250cc'),
-(49, 31, '327c2508b138a27ba21506fd4e6a47f4bb1852ac24b9d4afacf025272314a05e'),
-(50, 31, '2675be80982b28ab49114d04997a3d005ff7f818809389717dc63942f9b908af');
+(58, 31, '6adc707eba1c69345039455fa25e8cf881c3ac4616747b3b917141d2b44cf935'),
+(60, 31, '06636059af03071ac84a72266741761a3485baebe7c489d29612567e12fa21bc'),
+(65, 31, '3930e806f278688ac7cb318c54837506f3a056191bad9bd79d1b827f8b381897'),
+(66, 31, '51d76efd728ac19b524d251c76ffac536140a64aad9f205e6b73c63def29de80'),
+(67, 31, '025f524751f4dfe9397d9eaa3a24c02bdf268c1122fba71f5451eb668510dce9'),
+(68, 31, '394e95f2b2a52d16bd61ef43b0cb01e58dad1029439bd0031b04e0760290fc45'),
+(72, 72, '517c9aa7dcf271be387356ddf90d4706ca0d66bf00526615f30a43fcdc6ea35b'),
+(75, 72, 'f951c2c9538549f08ae612340baadbee125a14f4cf36634df8be0bd733e7a36a'),
+(80, 75, '71c91b83ce9965d6d156f0f7c6460002967507aae6a7d197e1c447fa488009d6');
 
 -- --------------------------------------------------------
 
@@ -93,20 +86,20 @@ CREATE TABLE `todo` (
   `category_id` int NOT NULL,
   `creation_date` int NOT NULL,
   `end_date` int NOT NULL,
-  `done` tinyint(1) NOT NULL
+  `done` tinyint(1) NOT NULL,
+  `important` tinyint(1) NOT NULL,
+  `deadline` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_hungarian_ci;
 
 --
 -- Dumping data for table `todo`
 --
 
-INSERT INTO `todo` (`id`, `user_id`, `todo`, `category_id`, `creation_date`, `end_date`, `done`) VALUES
-(16, 31, 'Nem megcsinálni a házit', 2, 1648546668, 0, 0),
-(17, 31, 'Nem megcsinálni a házit', 2, 1648548220, 0, 1),
-(18, 31, 'Nem megcsinálni a házit', 2, 1648548593, 0, 0),
-(19, 31, 'Nem megcsinálni a házit', 2, 0, 1648548600, 1),
-(20, 31, 'test', 2, 1648549203, 0, 0),
-(21, 31, 'Test', 2, 0, 1648549222, 1);
+INSERT INTO `todo` (`id`, `user_id`, `todo`, `category_id`, `creation_date`, `end_date`, `done`, `important`, `deadline`) VALUES
+(16, 31, 'Nem megcsinálni a házit', 2, 1648546668, 0, 0, 0, 0),
+(23, 31, 'test', 2, 1648990734, 0, 0, 0, 0),
+(24, 31, 'test módisítás', 3, 1648990775, 1648990811, 1, 1, 0),
+(25, 31, 'testmegint', 2, 1648996307, 0, 0, 0, 60606060);
 
 -- --------------------------------------------------------
 
@@ -134,11 +127,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password_hash`, `password_salt`, `email`, `first_name`, `last_name`, `born_date`, `register_date`, `password_reset_token`, `email_verification_token`) VALUES
 (31, 'admin', '3efe0ecc33bcf6dfeaac9021f87594ec517db8eb43fee3e215f896694f528780', '7206cbe8399e3061c5132b3ad817eb30a5b401f06a87f37c9af00b5b59817213', 'admin@example.com', 'Project', 'Admin', 0, 1645793563, NULL, NULL),
-(61, 'simonsimon', '3dfdc27331ac05e5b60f6d65857ad7ab52613a42c733dcc1364f87547e57c73c', '4e727a2dd1510b89cb4bf0d6dafa2426cb68dba3aa65be2e69000c74e1247498', 'szotak.simon@gmail.com', 'Simon', 'Szoták', 960249600, 1648292001, NULL, '34173cdd4f20b17143460ad6783e6f3fe146cd348142fc56d71a8fd227c78c5f'),
-(66, 'szotaksoma', '6794fe66f20c4e5b009af6691bb1d3e9122a3cf664a65fa4db92d3215cd1edfb', 'fb3cc3564e8910df7c4cf0958cd647e8045335f156767eb6241213d57903aeb5', 'szotaksoma@gmail.com', 'Soma', 'Szoták', 854668800, 1648328653, NULL, NULL),
-(67, 'H-bence-J', 'b66f623a1f703eddbea0e64d8602308fb71dc92fe5ed87a551275d682ec7b75b', '449175644131226b2c3a06243adf8d0aee51fc0b3b41fad2c51c4949f13fc476', 'homokibence2001@gmail.com', 'Szia', 'HEllo', 993513600, 1648416790, NULL, NULL),
-(68, 'Kiricarry01', 'ab1213016bb34668a01b04ca6f195a9d3d3e76e68bf8190f0f93c092e1a62d9f', '88859364086f8ea34ac8af9dd06de0232a20c0bfb73cbea3b62044d85e84d0b0', 'kiraly.david9912@gmail.com', 'Dávid', 'Király', 929145600, 1648477951, NULL, NULL),
-(69, 'szotaksimonvagyok', '0504015fbd7db477a37c2d538e8a48a02dee0d2cded2a7bbdf2193a607ada39c', 'ea5e700e0fc4942d4590ce58315c6a0eb77154dc2305ef582e56aa25c075c1d8', 'szotak.simon16@gmail.com', 'Simon', 'Szoták', 960249600, 1648506560, NULL, '7cdb683f26f25cd2f000c3ab165ceadad4f9b7f4cb951c823f28ea306e6feedd');
+(73, 'szotaksoma', '2a1feb2f36621df4579c521d1292bb7ce587168067f82f21d71dfbdaa1476c63', '049e0e4e2be278305af177a45c3714e426827e50d2704cd45caba58d40f6f3a4', 'szotaksoma@gmail.com', 'Soma', 'Szoták', 854668800, 1649002767, 'e8cc3399fbdf1a32f23fef82dd8c6f0991e3679b95b37a9a1d4f04b545c635d1', NULL),
+(74, 'kiazazibrusz', '4bd9f77dbfbe605a423ceff054ed817bdba77230251f6fa969840de002595d3f', '98711efe27cc5884e6e3ab6f6396290324f4f62d9c1a8e82d17295ad69e29bd0', 'ibranyilevente@gmail.com', 'Levente', 'Ibrányi', 993427200, 1649018414, NULL, NULL),
+(75, 'csakafideszxd', '0113c6577eb0ecd2471ebe0b640362fd7f1ce08f80dbc5c528f10ff4d00941e5', '164221d84bf3479c6322e75e02a5ee7763695eb569acf208d6ac671464f2e885', 'webmester3@gmail.com', 'AKirály', 'Gráf', 969408000, 1649069281, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -185,19 +176,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `todo`
 --
 ALTER TABLE `todo`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Constraints for dumped tables
