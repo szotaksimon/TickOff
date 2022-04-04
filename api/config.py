@@ -1,4 +1,7 @@
+from dotenv import load_dotenv
 from os import getenv
+
+load_dotenv('.env')
 
 def get_env_variable(key: str, default=None):
     value = getenv(key, default)

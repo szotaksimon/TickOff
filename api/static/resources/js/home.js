@@ -1,5 +1,6 @@
-const API_URL = "http://localhost:5000"
-const LOGIN_URL = "http://localhost:5500/frontend/login.html"
+// TODO: change these in local development
+const API_URL = "https://api.tickoff.hu"
+const LOGIN_URL = "https://tickoff.hu/"
 
 async function logout() {
     await sendLogoutRequest()
@@ -7,7 +8,7 @@ async function logout() {
 }
 
 function navigationButton(view) {
-    window.location.replace(`http://localhost:5000/home/${view}`)
+    window.location.replace(`${API_URL}/home/${view}`)
 }
 
 async function sendLogoutRequest() {

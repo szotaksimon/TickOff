@@ -9,7 +9,10 @@ ssh $REMOTE "sudo systemctl stop $SVC && sudo systemctl disable $SVC && sudo rm 
 ssh $REMOTE "rm -rf /var/www/api/*"
 
 # Copy files
-scp ./*.{py,ini,service,txt,env} $REMOTE:$API_DIR
+scp -r ./static $REMOTE:$API_DIR
+scp -r ./templates $REMOTE:$API_DIR
+scp ./*.{py,ini,service,txt} $REMOTE:$API_DIR
+scp ./.env $REMOTE:$API_DIR
 
 # Create and setup virtualenv
 ssh $REMOTE "cd $API_DIR && virtualenv venv && source venv/bin/activate && pip install -r requirements.txt"
