@@ -1,5 +1,5 @@
 from flask import request, make_response, abort, redirect
-from time import time
+from time import sleep, time
 from schemas import success_response, todo_schema, user_schema
 import config
 

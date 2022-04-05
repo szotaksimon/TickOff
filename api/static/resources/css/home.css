@@ -173,30 +173,95 @@ body {
 .profil-nav {
     position: absolute;
     right: 0%;
-    border: 1px solid red;
     display: flex;
     margin-right: 1rem;
     color: #353535;
 }
 
-.profil-button {
+#profil-button {
     border-radius: 50%;
     margin-left: 1rem;
+}
+
+.profil-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--blue);
+    text-align: center;
+    height: 3rem;
+    width: 20rem;
+    color: white;
+    align-items: center;
+}
+
+.data {
+    position: absolute;
+    top: 5rem;
+    margin-left: 0.5rem;
+    color: #353535;
+}
+
+.data p {
+    color: #3751FE;
+    font-size: large;
+}
+
+.profil-span {
+    font-size: large;
+    color: #353535;
+}
+
+.profil-data-button-div {
+    position: absolute;
+    height: 10rem;
+    width: 20rem;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3.5rem;
+    z-index: 1000;
+}
+
+.profil-data-button {
+    width: 13rem;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #3751fe;
+}
+
+.profil-data-button:hover {
+    transition-duration: 0.2s;
+    background-color: #3752fee0;
+}
+
+.profil-data-button:active {
+    transition-duration: 0.1s;
+    transform: translateY(1px);
+    background-color: #3752febe;
 }
 
 #profil {
     visibility: hidden;
     position: absolute;
+    display: flex;
     top: 4rem;
     right: 0;
-    border: 1px solid red;
-    width: 15rem;
-    height: 25rem;
+    width: 20rem;
+    height: 100%;
+    box-shadow: 0 5px 10px 0 #00000010;
+    background-color: rgb(248, 248, 248);
 }
 
 #profil.slideIn {
     position: absolute;
-    right: -15rem;
+    right: -20rem;
     visibility: visible;
     -webkit-animation: slideIn 0.6s forwards;
     animation: slideIn 0.6s forwards;
@@ -211,6 +276,26 @@ body {
 @keyframes slideIn {
     100% {
         right: 0;
+    }
+}
+
+#profil.slideOut {
+    position: absolute;
+    right: 0;
+    visibility: visible;
+    -webkit-animation: slideOut 0.6s forwards;
+    animation: slideOut 0.6s forwards;
+}
+
+@-webkit-keyframes slideOut {
+    100% {
+        right: -20rem;
+    }
+}
+
+@keyframes slideOut {
+    100% {
+        right: -20rem;
     }
 }
 

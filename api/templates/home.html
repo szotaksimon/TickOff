@@ -24,11 +24,6 @@
             <button type="button" id="beallitasok"><img src="{{ url('/resources/img/beallitas.svg') }}" id="kesz-icon">Beállítások</button><br>
             <button type="button" id="kijelentkezes" onclick="logout()"><img src="{{ url('/resources/img/kijelentkezes.svg') }}" id="halasztott-icon">Kijelentkezés</button><br>
         </div>
-        <!-- <div class="category-div">
-            <p>Kategóriák</p>
-            <hr class="category-hr">
-
-        </div> -->
 
     </div>
     <div class="navbar">
@@ -37,15 +32,29 @@
             <img src="{{ url('/resources/img/kereses-icon.svg') }}" alt="kereses" id="kereses-icon">
         </div>
         <div class="profil-nav">
-            <p>username</p>
-            <button class="profil-button" onclick="showProfileField()">profil</button>
+            <p id="username"></p>
+            <button id="profil-button">profil</button>
         </div>
     </div>
     <div id="profil">
-        <p>asd</p>
+        <div class="profil-header">
+            <h3>Profil adatok</h3>
+        </div>
+        <div class="data">
+            <p>Vezetéknév: <span class="profil-span" id="lastname"></span></p>
+            <p>Keresztnév: <span class="profil-span" id="firstname"></span></p>
+            <p>E-mail cím: <span class="profil-span" id="email"></span></p>
+            <p>Születési dátum: <span class="profil-span" id="borndate"></span></p>
+            <p>Létrehozva: <span class="profil-span" id="registerdate"></span></p>
+        </div>
+        <div class="profil-data-button-div">
+            <button class="profil-data-button" id="change-username">Felh. név módosítása</button><br>
+            <button class="profil-data-button" id="change-password">Jelszó módosítása</button><br>
+            <button class="profil-data-button" id="change-data">Adatok módosítása</button><br>
+        </div>
     </div>
 
-    <div class="content">
+    <div class="content ">
         {% for todo in todos %}
         <p>
             {{todo}}
@@ -56,7 +65,7 @@
     </div>
 
 
-    <div class="no-mobile">
+    <div class="no-mobile ">
         <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
     </div>
 </body>
