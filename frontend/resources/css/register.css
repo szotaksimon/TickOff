@@ -1,15 +1,13 @@
-:root{
+:root {
     --blue: #3751FE;
 }
 
-
-
-body{
+body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #268bff1a;
 }
 
-.main{
+.main {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,7 +18,7 @@ body{
     background-color: var(--blue);
 }
 
-.side{
+.side {
     border: 3px solid var(--blue);
     width: 65%;
     height: 32.6rem;
@@ -28,7 +26,8 @@ body{
     margin-left: 35%;
     background-color: white;
 }
-.regisztracio-szoveg{
+
+.regisztracio-szoveg {
     margin-left: 2rem;
     font-size: 1.8rem;
     margin-top: 3rem;
@@ -36,7 +35,7 @@ body{
     color: var(--blue);
 }
 
-.inputok input{
+.inputok input {
     height: 2.2rem;
     margin-top: 1rem;
     border-radius: 0.3rem;
@@ -47,7 +46,8 @@ body{
     transition: 0.1s;
     outline: none;
 }
-.inputok input::placeholder{
+
+.inputok input::placeholder {
     color: #5a5a5a;
     font-weight: 400;
     font-size: 0.9rem;
@@ -56,57 +56,67 @@ body{
 
 input:focus {
     border-color: var(--blue);
-  }
-#vezeteknev-input{
+}
+
+#vezeteknev-input {
     margin-left: 2rem;
     width: 9.4rem;
 }
-#keresztnev-input{
+
+#keresztnev-input {
     margin-left: 0.8rem;
     width: 9.5rem;
 }
-#email-input{
+
+#email-input {
     margin-left: 2rem;
     width: 21.2rem;
 }
-#felhasznalo-input{
+
+#felhasznalo-input {
     margin-left: 2rem;
     width: 21.2rem;
 }
-#jelszo-input{
+
+#jelszo-input {
     margin-left: 2rem;
     width: 21.2rem;
 }
-#togglePassword{
+
+#togglePassword {
     position: absolute;
     margin-left: -2.2rem;
     margin-top: 1.75rem;
     color: var(--blue);
     cursor: pointer;
 }
-#togglePassword:hover{
+
+#togglePassword:hover {
     color: #3a54fad0;
     transition-duration: 0.4s;
 }
-#jelszo-megint-input{
+
+#jelszo-megint-input {
     margin-left: 2rem;
     margin-top: 0.6rem;
     width: 21.2rem;
 }
-#szuletes-input{
+
+#szuletes-input {
     margin-left: 0.8rem;
     width: 11rem;
     padding-left: 0.8rem;
     color: #4d4d4d;
     padding-inline-start: 1.4rem;
 }
-#szuletes-span{
+
+#szuletes-span {
     margin-left: 4.4rem;
     color: #2e2e2e;
     font-size: 0.9rem;
 }
 
-#regisztracio-gomb{
+#regisztracio-gomb {
     width: 13rem;
     height: 2rem;
     margin-left: 6.5rem;
@@ -116,18 +126,21 @@ input:focus {
     color: white;
     font-weight: bold;
     background-color: var(--blue);
+    cursor: pointer;
 }
-#regisztracio-gomb:hover{
+
+#regisztracio-gomb:hover {
     transition-duration: 0.2s;
     background-color: #3752fee0;
 }
-#regisztracio-gomb:active{
+
+#regisztracio-gomb:active {
     transition-duration: 0.1s;
     transform: translateY(1px);
     background-color: #3752febe;
 }
 
-.belepes-link{
+.belepes-link {
     position: absolute;
     top: 80%;
     left: 4rem;
@@ -135,28 +148,33 @@ input:focus {
     color: white;
     font-size: 0.9rem;
 }
-#link-szoveg{
+
+#link-szoveg {
     font-weight: 500;
 }
-a{
+
+a {
     color: white;
     text-decoration: none;
 }
-a:visited{
+
+a:visited {
     color: white;
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     color: #b1b1b1;
 }
 
-#logo{
+#logo {
     position: absolute;
     left: 3.8rem;
     top: 3.8rem;
     width: 7rem;
 }
-#jelszo-erosseg{
+
+#jelszo-erosseg {
     height: 0.2rem;
     border-radius: 5px;
     margin-left: 2.7rem;
@@ -181,38 +199,59 @@ a:hover{
     left: 50%;
     bottom: 30px;
     font-size: 17px;
-  }
-  
-  #snackbar.show {
+}
+
+#snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-  
-  @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-  }
-  
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-  }
-  
-  @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-  }
-  
-  @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
+}
 
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
 
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
 
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
 
-.no-mobile{
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+.no-mobile {
     display: none;
     top: 0%;
     left: 0%;
@@ -224,20 +263,36 @@ a:hover{
     position: absolute;
     text-align: center;
 }
-.no-mobile h1{
+
+.no-mobile h1 {
     width: 400px;
     color: #2b2b2be0;
 }
 
-@media (max-width: 680px) { .no-mobile {display: flex; align-items: center; justify-content: center; -webkit-animation: fadein 0.6s;
-    animation: fadein 0.6s } }
+@media (max-width: 680px) {
+    .no-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-animation: fadein 0.6s;
+        animation: fadein 0.6s
+    }
+}
 
-    @-webkit-keyframes fadein {
-        from {opacity: 0;} 
-        to {opacity: 1;}
-      }
-      
-      @keyframes fadein {
-        from {opacity: 0;}
-        to {opacity: 1;}
-      }
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

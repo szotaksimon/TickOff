@@ -33,7 +33,7 @@
         </div>
         <div class="profil-nav">
             <p id="username"></p>
-            <button id="profil-button">profil</button>
+            <div id="profil-button"><img src="{{ url('/resources/img/profilPic.svg')}}" style="width: 45px" alt=""></div>
         </div>
     </div>
     <div id="profil">
@@ -47,27 +47,51 @@
             <p>Születési dátum: <span class="profil-span" id="borndate"></span></p>
             <p>Létrehozva: <span class="profil-span" id="registerdate"></span></p>
         </div>
+        <div id="change-username-div">
+            <h3>Felhasználónév módosítása</h3>
+            <input type="password" name="password-username" id="password-username" class="profil-input" placeholder="Jelszó"><br>
+            <input type="text" name="new-username" id="new-username" class="profil-input" placeholder="Új felhasználónév"><br>
+            <button name="new-username-ok-button" id="new-username-ok-button">Megváltoztat</button>
+        </div>
+        <div id="change-password-div">
+            <h3>Jelszó módosítása</h3>
+            <input type="password" name="old-password" id="old-password" class="profil-input" placeholder="Jelszó"><br>
+            <input type="password" name="new-password" id="new-password" class="profil-input" placeholder="Új jelszó"><br>
+            <input type="password" name="new-password-again" id="new-password-again" class="profil-input" placeholder="Új jelszó mégegyszer">
+            <button name="new-password-ok-button" id="new-password-ok-button">Megváltoztat</button>
+        </div>
+        <div id="change-data-div">
+            <h3>Adatok módosítása</h3>
+            <input type="text" name="new-last" id="new-last" class="profil-input" placeholder="Vezetéknév"><br>
+            <input type="text" name="new-first" id="new-first" class="profil-input" placeholder="Keresztnév"><br>
+            <input type="date" name="new-born" id="new-born" class="profil-input" placeholder="Születési dátum">
+            <button name="new-data-ok-button" id="new-data-ok-button">Megváltoztat</button>
+        </div>
         <div class="profil-data-button-div">
-            <button class="profil-data-button" id="change-username">Felh. név módosítása</button><br>
-            <button class="profil-data-button" id="change-password">Jelszó módosítása</button><br>
-            <button class="profil-data-button" id="change-data">Adatok módosítása</button><br>
+            <button class="profil-data-button" id="change-username" onclick="showUsernameChangeDiv()">Felh. név módosítása</button><br>
+            <button class="profil-data-button" id="change-password" onclick="showPasswordChangeDiv()">Jelszó módosítása</button><br>
+            <button class="profil-data-button" id="change-data" onclick="showDataChangeDiv()">Adatok módosítása</button><br>
         </div>
     </div>
 
-    <div class="content ">
+    <div class="content">
+        <div class="todo-explanation">
+            <span>Feladat</span>
+        </div>
         {% for todo in todos %}
-        <p>
-            {{todo}}
-        </p>
+        <ul class="todo">
+            <li><span>{{todo.todo}}</span><span>{{todo.category_id}}</span><span>{{todo.deadline}}</span></li>
+        </ul>
         {% endfor %} {% if todos|length == 0 %}
         <p>Nincs találat</p>
         {% endif %}
     </div>
 
-
+    <div id="snackbar"></div>
     <div class="no-mobile ">
         <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
     </div>
+
 </body>
 
 </html>

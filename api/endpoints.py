@@ -368,6 +368,15 @@ def json_change_password():
     if new_password != new_password_again:
         abort(400, "the two password is not equal")
 
+    if len(old_password) == 0:
+        abort(400, "old_password can't be empty")
+
+    if len(new_password) == 0:
+        abort(400, "new_password can't be empty")
+
+    if len(new_password_again) == 0:
+        abort(400, "new_password_again can't be empty")
+
     new_password_hash = utils.salted_hash(new_password, user.password_salt)
 
     user.password_hash = new_password_hash
@@ -397,6 +406,12 @@ def json_change_username():
     if existing_user is not None:
         abort(400, "a felhasználónév már foglalt")
 
+    if len(password) > 60:
+        abort(400, "password length is too long")
+
+    if len(new_username) == 0:
+        abort(400, "username can't be empty")
+
     user.username = new_username
 
     db.session.commit()
@@ -415,10 +430,24 @@ def json_change_data():
     new_first_name, new_last_name, new_born_date = utils.validate_json(
         "newFirstName", "newLastName", "newBornDate"
     )
+    
 
-    user.first_name = new_first_name
-    user.last_name = new_last_name
-    user.born_date = new_born_date
+    if len(new_first_name) == 0:
+        user.first_name = user.first_name
+    else:
+        user.first_name = new_first_name
+
+    if len(new_last_name) == 0:
+        user.last_name = user.last_name
+    else:
+        user.last_name = new_last_name
+
+    if new_born_date == 0:
+        user.born_date = user.born_date
+    else:
+        user.born_date = new_born_date
+    
+
     db.session.commit()
 
     return success_response("data changed successfully")

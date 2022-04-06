@@ -60,6 +60,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .navigation img {
@@ -117,16 +118,6 @@ body {
     transition-duration: 0.2s;
 }
 
-.content {
-    position: absolute;
-    top: 4rem;
-    left: 15rem;
-    bottom: 0;
-    right: 0;
-    padding: 1rem;
-    overflow: auto;
-}
-
 .navbar {
     position: absolute;
     top: 0;
@@ -179,8 +170,14 @@ body {
 }
 
 #profil-button {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
     border-radius: 50%;
+    margin-top: 0.2rem;
     margin-left: 1rem;
+    background-color: white;
+    cursor: pointer;
 }
 
 .profil-header {
@@ -193,23 +190,6 @@ body {
     width: 20rem;
     color: white;
     align-items: center;
-}
-
-.data {
-    position: absolute;
-    top: 5rem;
-    margin-left: 0.5rem;
-    color: #353535;
-}
-
-.data p {
-    color: #3751FE;
-    font-size: large;
-}
-
-.profil-span {
-    font-size: large;
-    color: #353535;
 }
 
 .profil-data-button-div {
@@ -234,6 +214,7 @@ body {
     color: white;
     font-weight: bold;
     background-color: #3751fe;
+    cursor: pointer;
 }
 
 .profil-data-button:hover {
@@ -251,52 +232,327 @@ body {
     visibility: hidden;
     position: absolute;
     display: flex;
+    align-items: center;
     top: 4rem;
     right: 0;
     width: 20rem;
     height: 100%;
     box-shadow: 0 5px 10px 0 #00000010;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(253, 253, 253);
 }
 
-#profil.slideIn {
+#profil.slideInProfil {
     position: absolute;
     right: -20rem;
     visibility: visible;
-    -webkit-animation: slideIn 0.6s forwards;
-    animation: slideIn 0.6s forwards;
+    -webkit-animation: slideInProfil 0.6s forwards;
+    animation: slideInProfil 0.6s forwards;
 }
 
-@-webkit-keyframes slideIn {
+@-webkit-keyframes slideInProfil {
     100% {
         right: 0;
     }
 }
 
-@keyframes slideIn {
+@keyframes slideInProfil {
     100% {
         right: 0;
     }
 }
 
-#profil.slideOut {
+#profil.slideOutProfil {
     position: absolute;
     right: 0;
     visibility: visible;
-    -webkit-animation: slideOut 0.6s forwards;
-    animation: slideOut 0.6s forwards;
+    -webkit-animation: slideOutProfil 0.6s forwards;
+    animation: slideOutProfil 0.6s forwards;
 }
 
-@-webkit-keyframes slideOut {
+@-webkit-keyframes slideOutProfil {
     100% {
         right: -20rem;
     }
 }
 
-@keyframes slideOut {
+@keyframes slideOutProfil {
     100% {
         right: -20rem;
     }
+}
+
+.data {
+    position: absolute;
+    width: 20rem;
+    top: 5rem;
+    color: #353535;
+    margin-left: 0.5rem;
+}
+
+.data p {
+    color: #3751FE;
+    font-size: large;
+}
+
+.profil-span {
+    font-size: large;
+    color: #353535;
+}
+
+#change-username-div h3 {
+    font-size: large;
+    color: #353535ce;
+}
+
+#change-username-div {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 18rem;
+    height: 15rem;
+    width: 20rem;
+    padding-top: 1rem;
+    text-align: center;
+    flex-direction: column;
+    z-index: 1500;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    padding-top: 1rem;
+    background-color: #f7f7f7de;
+}
+
+#change-username-div.slideInUsername {
+    position: absolute;
+    right: -20rem;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideInUsername 0.6s forwards;
+    animation: slideInUsername 0.6s forwards;
+}
+
+@-webkit-keyframes slideInUsername {
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes slideInUsername {
+    100% {
+        right: 0;
+    }
+}
+
+#change-username-div.slideOutUsername {
+    position: absolute;
+    right: 0;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideOutUsername 0.6s forwards;
+    animation: slideOutUsername 0.6s forwards;
+}
+
+@-webkit-keyframes slideOutUsername {
+    100% {
+        right: -20rem;
+    }
+}
+
+@keyframes slideOutUsername {
+    100% {
+        right: -20rem;
+    }
+}
+
+.profil-input {
+    height: 1.8rem;
+    width: 13rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgb(99, 99, 99);
+    border-color: #268bff75;
+    padding-inline-start: 1rem;
+    color: #3b3b3b;
+    transition: 0.1s;
+    outline: none;
+}
+
+.profil-input:focus {
+    border-color: #3751fe;
+}
+
+.profil-input:active {
+    border-color: #3751fe;
+}
+
+#password-username {
+    margin-top: 1rem;
+}
+
+#new-username-ok-button {
+    width: 13rem;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #3751fe;
+    cursor: pointer;
+}
+
+#new-username-ok-button:hover {
+    transition-duration: 0.2s;
+    background-color: #3752fee0;
+}
+
+#new-username-ok-button:active {
+    transition-duration: 0.1s;
+    transform: translateY(1px);
+    background-color: #3752febe;
+}
+
+#change-password-div h3 {
+    font-size: large;
+    color: #353535ce;
+}
+
+#change-password-div {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 18rem;
+    height: 15rem;
+    width: 20rem;
+    padding-top: 1rem;
+    text-align: center;
+    flex-direction: column;
+    z-index: 1500;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    background-color: #f7f7f7de;
+}
+
+#change-password-div.slideInPassword {
+    position: absolute;
+    right: -20rem;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideInPassword 0.6s forwards;
+    animation: slideInPassword 0.6s forwards;
+}
+
+@-webkit-keyframes slideInPassword {
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes slideInPassword {
+    100% {
+        right: 0;
+    }
+}
+
+#change-password-div.slideOutPassword {
+    position: absolute;
+    right: 0;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideOutPassword 0.6s forwards;
+    animation: slideOutPassword 0.6s forwards;
+}
+
+@-webkit-keyframes slideOutPassword {
+    100% {
+        right: -20rem;
+    }
+}
+
+@keyframes slideOutPassword {
+    100% {
+        right: -20rem;
+    }
+}
+
+#new-password-ok-button {
+    width: 13rem;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #3751fe;
+    cursor: pointer;
+}
+
+#change-data-div h3 {
+    font-size: large;
+    color: #353535ce;
+}
+
+#change-data-div {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 18rem;
+    height: 15rem;
+    width: 20rem;
+    padding-top: 1rem;
+    text-align: center;
+    flex-direction: column;
+    z-index: 1500;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    background-color: #f7f7f7de;
+}
+
+#change-data-div.slideInData {
+    position: absolute;
+    right: -20rem;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideInData 0.6s forwards;
+    animation: slideInData 0.6s forwards;
+}
+
+@-webkit-keyframes slideInData {
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes slideInData {
+    100% {
+        right: 0;
+    }
+}
+
+#change-data-div.slideOutData {
+    position: absolute;
+    right: 0;
+    z-index: 1500;
+    visibility: visible;
+    -webkit-animation: slideOutData 0.6s forwards;
+    animation: slideOutData 0.6s forwards;
+}
+
+@-webkit-keyframes slideOutData {
+    100% {
+        right: -20rem;
+    }
+}
+
+@keyframes slideOutData {
+    100% {
+        right: -20rem;
+    }
+}
+
+#new-data-ok-button {
+    width: 13rem;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #3751fe;
+    cursor: pointer;
 }
 
 .no-mobile {
@@ -342,5 +598,100 @@ body {
     }
     to {
         opacity: 1;
+    }
+}
+
+.content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    margin-top: 7rem;
+    top: 4rem;
+    left: 15rem;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.todo {
+    width: 70%;
+    height: 2rem;
+    background-color: #3752fe46;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.4rem;
+    border-radius: 5px;
+}
+
+
+/* toast */
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: rgba(255, 40, 40, 0.678);
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
     }
 }
