@@ -8,9 +8,9 @@ const change_data_div = document.getElementById("change-data-div")
 const toast = document.getElementById("snackbar")
 let user
 let slideProfil = true
-let slideUsername = true
-let slidePassword = true
-let slideData = true
+let slideUsername = () => !change_username_div.classList.contains("slideInUsername")
+let slidePassword = () => !change_password_div.classList.contains("slideInPassword")
+let slideData = () => !change_data_div.classList.contains("slideInData")
 
 window.addEventListener('load', (event) => {
     profilData()
@@ -40,18 +40,16 @@ async function sendLogoutRequest() {
     return { result }
 }
 
-
-
-
 async function showProfileField() {
     if (slideProfil) {
+        slideProfil = false
+
         document.getElementById("lastname").innerHTML = ""
         document.getElementById("firstname").innerHTML = ""
         document.getElementById("email").innerHTML = ""
         document.getElementById("borndate").innerHTML = ""
         document.getElementById("registerdate").innerHTML = ""
 
-        profil_div.className = "slideInProfil"
         document.getElementById("lastname").innerHTML += user.data.last_name
         document.getElementById("firstname").innerHTML += user.data.first_name
         document.getElementById("email").innerHTML += user.data.email
@@ -64,42 +62,43 @@ async function showProfileField() {
         year = register_date.getFullYear()
         month = register_date.getMonth() + 1
         day = register_date.getDay()
-        document.getElementById("registerdate").innerHTML += year + "." + month + "." + day + "."
+        document.getElementById("registerdate").innerHTML += register_date.toLocaleDateString("hu") //year + "." + month + "." + day + "."
+        profil_div.classList.add("slideInProfil")
 
-        slideProfil = false
     } else {
-        profil_div.className = "slideOutProfil"
         slideProfil = true
+        profil_div.classList.remove("slideInProfil")
+
     }
 }
 
 function showUsernameChangeDiv() {
-    if (slideUsername) {
-        change_username_div.className = "slideInUsername"
-        slideUsername = false
+    change_password_div.classList.remove("slideInPassword")
+    change_data_div.classList.remove("slideInData")
+    if (slideUsername()) {
+        change_username_div.classList.add("slideInUsername")
     } else {
-        change_username_div.className = "slideOutUsername"
-        slideUsername = true
+        change_username_div.classList.remove("slideInUsername")
     }
 }
 
 function showPasswordChangeDiv() {
-    if (slidePassword) {
-        change_password_div.className = "slideInPassword"
-        slidePassword = false
+    change_username_div.classList.remove("slideInUsername")
+    change_data_div.classList.remove("slideInData")
+    if (slidePassword()) {
+        change_password_div.classList.add("slideInPassword")
     } else {
-        change_password_div.className = "slideOutPassword"
-        slidePassword = true
+        change_password_div.classList.remove("slideInPassword")
     }
 }
 
 function showDataChangeDiv() {
-    if (slideData) {
-        change_data_div.className = "slideInData"
-        slideData = false
+    change_username_div.classList.remove("slideInUsername")
+    change_password_div.classList.remove("slideInPassword")
+    if (slideData()) {
+        change_data_div.classList.add("slideInData")
     } else {
-        change_data_div.className = "slideOutData"
-        slideData = true
+        change_data_div.classList.remove("slideInData")
     }
 }
 

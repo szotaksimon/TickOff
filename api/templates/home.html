@@ -36,16 +36,21 @@
             <div id="profil-button"><img src="{{ url('/resources/img/profilPic.svg')}}" style="width: 45px" alt=""></div>
         </div>
     </div>
-    <div id="profil">
+    <div id="profil" class="profil">
         <div class="profil-header">
             <h3>Profil adatok</h3>
         </div>
         <div class="data">
-            <p>Vezetéknév: <span class="profil-span" id="lastname"></span></p>
-            <p>Keresztnév: <span class="profil-span" id="firstname"></span></p>
-            <p>E-mail cím: <span class="profil-span" id="email"></span></p>
-            <p>Születési dátum: <span class="profil-span" id="borndate"></span></p>
-            <p>Létrehozva: <span class="profil-span" id="registerdate"></span></p>
+            <p>Vezetéknév</p>
+            <span id="lastname"></span>
+            <p>Keresztnév</p>
+            <span id="firstname"></span>
+            <p>E-mail cím</p>
+            <span id="email"></span>
+            <p>Születési dátum</p>
+            <span id="borndate"></span>
+            <p>Létrehozva</p>
+            <span id="registerdate"></span>
         </div>
         <div id="change-username-div">
             <h3>Felhasználónév módosítása</h3>
@@ -78,11 +83,23 @@
         <div class="todo-explanation">
             <span>Feladat</span>
         </div>
+        <div class="todo-list">
         {% for todo in todos %}
-        <ul class="todo">
-            <li><span>{{todo.todo}}</span><span>{{todo.category_id}}</span><span>{{todo.deadline}}</span></li>
-        </ul>
+            <div class="todo">
+                <div>
+                    <span class="star" title="{{ 'Megjelölés fontosként' if not todo.important else 'Megjelölés nem fontosként' }}">
+                        {{ '🤩' if todo.important else '😴' }}
+                    </span>
+                    <span class="text">{{todo.todo}}</span>
+                    <span class="category">{{todo.category}}</span>
+                </div>
+                <div>
+                    <span class="creationDate">{{todo.creation_date_text}} </span>
+                    <span class="deadline">⏰ {{todo.deadline_text}}</span>
+                </div>
+            </div>
         {% endfor %} {% if todos|length == 0 %}
+        </div>
         <p>Nincs találat</p>
         {% endif %}
     </div>

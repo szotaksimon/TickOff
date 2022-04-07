@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 2rem;
 }
 
@@ -36,15 +36,14 @@ body {
 }
 
 .navigation {
-    position: absolute;
+    margin-top: 4rem;
     width: 100%;
-    bottom: 0;
-    top: 25%;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    flex: 1;
 }
 
 .navigation button {
@@ -203,7 +202,6 @@ body {
     align-items: center;
     flex-direction: column;
     margin-bottom: 3.5rem;
-    z-index: 1000;
 }
 
 .profil-data-button {
@@ -228,75 +226,52 @@ body {
     background-color: #3752febe;
 }
 
-#profil {
-    visibility: hidden;
-    position: absolute;
+.profil {
     display: flex;
+    position: absolute;
     align-items: center;
     top: 4rem;
-    right: 0;
+    right: -20rem;
     width: 20rem;
     height: 100%;
     box-shadow: 0 5px 10px 0 #00000010;
     background-color: rgb(253, 253, 253);
+    transition: transform 250ms ease-in-out;
+    z-index: 1;
 }
 
-#profil.slideInProfil {
-    position: absolute;
-    right: -20rem;
-    visibility: visible;
-    -webkit-animation: slideInProfil 0.6s forwards;
-    animation: slideInProfil 0.6s forwards;
+.profil.slideInProfil {
+    transform: translateX(-20rem);
 }
 
-@-webkit-keyframes slideInProfil {
-    100% {
-        right: 0;
-    }
-}
-
-@keyframes slideInProfil {
-    100% {
-        right: 0;
-    }
-}
-
-#profil.slideOutProfil {
-    position: absolute;
-    right: 0;
-    visibility: visible;
-    -webkit-animation: slideOutProfil 0.6s forwards;
-    animation: slideOutProfil 0.6s forwards;
-}
-
-@-webkit-keyframes slideOutProfil {
-    100% {
-        right: -20rem;
-    }
-}
-
-@keyframes slideOutProfil {
-    100% {
-        right: -20rem;
-    }
+.profil.slideOutProfil {
+    transform: translateX(0);
 }
 
 .data {
     position: absolute;
     width: 20rem;
-    top: 5rem;
+    top: 2rem;
     color: #353535;
-    margin-left: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    padding-top: 1.5rem;
 }
 
 .data p {
     color: #3751FE;
-    font-size: large;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+    margin-top: 0;
 }
 
-.profil-span {
-    font-size: large;
+.profil span {
     color: #353535;
+    display: block;
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-bottom: 7px;
 }
 
 #change-username-div h3 {
@@ -305,61 +280,22 @@ body {
 }
 
 #change-username-div {
-    visibility: hidden;
     position: absolute;
-    right: 0;
+    right: -20rem;
     top: 18rem;
     height: 15rem;
     width: 20rem;
     padding-top: 1rem;
     text-align: center;
     flex-direction: column;
-    z-index: 1500;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     padding-top: 1rem;
-    background-color: #f7f7f7de;
+    background-color: #f0f0f0;
+    transition: transform 250ms ease-in-out;
+    transform: translateX(0);
 }
 
 #change-username-div.slideInUsername {
-    position: absolute;
-    right: -20rem;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideInUsername 0.6s forwards;
-    animation: slideInUsername 0.6s forwards;
-}
-
-@-webkit-keyframes slideInUsername {
-    100% {
-        right: 0;
-    }
-}
-
-@keyframes slideInUsername {
-    100% {
-        right: 0;
-    }
-}
-
-#change-username-div.slideOutUsername {
-    position: absolute;
-    right: 0;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideOutUsername 0.6s forwards;
-    animation: slideOutUsername 0.6s forwards;
-}
-
-@-webkit-keyframes slideOutUsername {
-    100% {
-        right: -20rem;
-    }
-}
-
-@keyframes slideOutUsername {
-    100% {
-        right: -20rem;
-    }
+    transform: translateX(-20rem);
 }
 
 .profil-input {
@@ -415,60 +351,21 @@ body {
 }
 
 #change-password-div {
-    visibility: hidden;
     position: absolute;
-    right: 0;
+    right: -20rem;
     top: 18rem;
     height: 15rem;
     width: 20rem;
     padding-top: 1rem;
     text-align: center;
     flex-direction: column;
-    z-index: 1500;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-    background-color: #f7f7f7de;
+    background-color: #f0f0f0;
+    transition: transform 250ms ease-in-out;
+    transform: translateX(0);
 }
 
 #change-password-div.slideInPassword {
-    position: absolute;
-    right: -20rem;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideInPassword 0.6s forwards;
-    animation: slideInPassword 0.6s forwards;
-}
-
-@-webkit-keyframes slideInPassword {
-    100% {
-        right: 0;
-    }
-}
-
-@keyframes slideInPassword {
-    100% {
-        right: 0;
-    }
-}
-
-#change-password-div.slideOutPassword {
-    position: absolute;
-    right: 0;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideOutPassword 0.6s forwards;
-    animation: slideOutPassword 0.6s forwards;
-}
-
-@-webkit-keyframes slideOutPassword {
-    100% {
-        right: -20rem;
-    }
-}
-
-@keyframes slideOutPassword {
-    100% {
-        right: -20rem;
-    }
+    transform: translateX(-20rem);
 }
 
 #new-password-ok-button {
@@ -488,60 +385,21 @@ body {
 }
 
 #change-data-div {
-    visibility: hidden;
     position: absolute;
-    right: 0;
+    right: -20rem;
     top: 18rem;
     height: 15rem;
     width: 20rem;
     padding-top: 1rem;
     text-align: center;
     flex-direction: column;
-    z-index: 1500;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-    background-color: #f7f7f7de;
+    background-color: #f0f0f0;
+    transition: transform 250ms ease-in-out;
+    transform: translateX(0);
 }
 
 #change-data-div.slideInData {
-    position: absolute;
-    right: -20rem;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideInData 0.6s forwards;
-    animation: slideInData 0.6s forwards;
-}
-
-@-webkit-keyframes slideInData {
-    100% {
-        right: 0;
-    }
-}
-
-@keyframes slideInData {
-    100% {
-        right: 0;
-    }
-}
-
-#change-data-div.slideOutData {
-    position: absolute;
-    right: 0;
-    z-index: 1500;
-    visibility: visible;
-    -webkit-animation: slideOutData 0.6s forwards;
-    animation: slideOutData 0.6s forwards;
-}
-
-@-webkit-keyframes slideOutData {
-    100% {
-        right: -20rem;
-    }
-}
-
-@keyframes slideOutData {
-    100% {
-        right: -20rem;
-    }
+    transform: translateX(-20rem);
 }
 
 #new-data-ok-button {
@@ -605,26 +463,84 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-left: 5%;
-    margin-top: 7rem;
     top: 4rem;
     left: 15rem;
     bottom: 0;
     right: 0;
-    padding: 1rem;
     overflow: auto;
+    padding: 3rem 2rem;
+}
+
+.todo-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .todo {
-    width: 70%;
-    height: 2rem;
-    background-color: #3752fe46;
-    list-style-type: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 50px;
+    background-color: white;
+    box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 0.4rem;
-    border-radius: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.todo div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.todo span {
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.todo span:first-child {
+    margin-left: 0;
+}
+
+.todo span:last-child {
+    margin-right: 0;
+}
+
+.todo span.star {
+    height: 100%;
+    width: 20px;
+    font-size: 25px;
+    color: rgb(255, 166, 0);
+    cursor: pointer;
+    margin-right: 15px;
+    transition: opacity 100ms ease-in-out;
+    user-select: none;
+}
+
+.todo span.star:hover {
+    opacity: 0.7;
+}
+
+.todo span.star:active {
+    opacity: 0.5;
+}
+
+.todo span.text {
+    font-weight: 600;
+    width: 20rem;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
