@@ -9,6 +9,15 @@ from models import User, Session, Todo
 from startup import app, db
 import mailgun
 
+def pswDigitCheck(psw):
+    return any(char.isdigit() for char in psw)
+
+def pswLowerCheck(psw):
+    return any(letter.islower() for letter in psw)
+
+def pswUpperCheck(psw):
+    return any(letter.isupper() for letter in psw)
+
 
 @app.route("/register", methods=["POST"])
 def json_register():
@@ -56,6 +65,15 @@ def json_register():
     # A jelszó nem elég hosszú
     if len(password) < 8:
         abort(400, "password length is too short")
+
+    if not pswDigitCheck(password):
+        abort(400, "password must contain a number")
+
+    if not pswLowerCheck(password):
+        abort(400, "password must contain lowercase")
+
+    if not pswUpperCheck(password):
+        abort(400, "password must contain uppercase")
 
     # A jelszó túl hosszú
     if len(password) > 60:
@@ -376,6 +394,19 @@ def json_change_password():
 
     if len(new_password_again) == 0:
         abort(400, "new_password_again can't be empty")
+
+    if len(new_password) < 8:
+        abort(400, "password length is too short")
+
+    if not pswDigitCheck(new_password):
+        abort(400, "password must contain a number")
+
+    if not pswLowerCheck(new_password):
+        abort(400, "password must contain lowercase")
+
+    if not pswUpperCheck(new_password):
+        abort(400, "password must contain uppercase")
+
 
     new_password_hash = utils.salted_hash(new_password, user.password_salt)
 
