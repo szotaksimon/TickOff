@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url('/resources/css/home.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url('/resources/img/favicon.svg') }}">
     <title>TickOff</title>
     <script defer src="{{ url('/resources/js/home.js') }}"></script>
 </head>
@@ -80,31 +81,49 @@
     </div>
 
     <div class="content">
-        <div class="todo-explanation">
-            <span>Feladat</span>
+        <div class="todo-list-add">
+            <div class="todo-add">
+                <div class="first">
+                    <span class="star" title="Megjelölés fontosként">😴</span>
+                    <span class="text-add"><input type="text"></span>
+                    <span class="category-add"><input type="list"></span>
+                </div>
+                <div class="second">
+                    <span class="deadline-add"><input type="date"></span>
+                </div>
+                <div class="third">
+                    <span class="add">✅</span>
+                </div>
+            </div>
         </div>
+
         <div class="todo-list">
-        {% for todo in todos %}
+            {% for todo in todos %}
             <div class="todo">
-                <div>
-                    <span class="star" title="{{ 'Megjelölés fontosként' if not todo.important else 'Megjelölés nem fontosként' }}">
+                <div class="first">
+                    <span class="star" title="{{ 'Megjelölés fontosként' if not todo.important else 'Megjelölés nem fontosként' }} ">
                         {{ '🤩' if todo.important else '😴' }}
                     </span>
                     <span class="text">{{todo.todo}}</span>
-                    <span class="category">{{todo.category}}</span>
+                    <span class="category ">{{todo.category}}</span>
                 </div>
-                <div>
-                    <span class="creationDate">{{todo.creation_date_text}} </span>
-                    <span class="deadline">⏰ {{todo.deadline_text}}</span>
+                <div class="second ">
+                    <span class="creationDate ">📆 {{todo.creation_date_text}}</span>
+                    <span class="arrow ">➞</span>
+                    <span class="deadline ">⏰ {{todo.deadline_text}}</span>
+                </div>
+                <div class="third ">
+                    <span class="delete ">❌</span>
+                    <span class="done ">✅</span>
                 </div>
             </div>
-        {% endfor %} {% if todos|length == 0 %}
+            {% endfor %} {% if todos|length == 0 %}
         </div>
         <p>Nincs találat</p>
         {% endif %}
     </div>
 
-    <div id="snackbar"></div>
+    <div id="snackbar "></div>
     <div class="no-mobile ">
         <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
     </div>
