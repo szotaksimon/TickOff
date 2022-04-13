@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="{{ url('/resources/css/home.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ url('/resources/img/favicon.svg') }}">
     <title>TickOff</title>
+    <script defer src="{{ url('/resources/js/config-local.js') }}"></script>
     <script defer src="{{ url('/resources/js/home.js') }}"></script>
+    <script defer src="{{ url('/resources/js/todo-add.js') }}"></script>
+    <script defer src="{{ url('/resources/js/todo-edit.js') }}"></script>
+
 </head>
 
 <body>
@@ -82,17 +86,21 @@
 
     <div class="content">
         <div class="todo-list-add">
-            <div class="todo-add">
+            <div class="todo">
                 <div class="first">
-                    <span class="star" title="Megjelölés fontosként">😴</span>
-                    <span class="text-add"><input type="text"></span>
-                    <span class="category-add"><input type="list"></span>
+                    <span onclick="newTodo.toggleImportant()" class="star" id="todo-add-important" title="Megjelölés fontosként">😴</span>
+                    <span class="text"><input type="text" id="todo-add-title" placeholder="Új teendő..."></span>
                 </div>
                 <div class="second">
-                    <span class="deadline-add"><input type="date"></span>
-                </div>
-                <div class="third">
-                    <span class="add">✅</span>
+                    <span class="category">
+                        <select id="todo-add-category" name="todo-add-category">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </span>
+                    <span class="deadline">⏰&nbsp;<input id="todo-add-deadline" type="date"></span>
+                    <span class="clickable" onclick="newTodo.create()">➕</span>
                 </div>
             </div>
         </div>
@@ -107,14 +115,12 @@
                     <span class="text">{{todo.todo}}</span>
                     <span class="category ">{{todo.category}}</span>
                 </div>
-                <div class="second ">
-                    <span class="creationDate ">📆 {{todo.creation_date_text}}</span>
-                    <span class="arrow ">➞</span>
+                <div class="second">
+                    <span class="creationDate">📆 {{todo.creation_date_text}}</span>
+                    <span class="arrow">➞</span>
                     <span class="deadline ">⏰ {{todo.deadline_text}}</span>
-                </div>
-                <div class="third ">
-                    <span class="delete ">❌</span>
-                    <span class="done ">✅</span>
+                    <span onclick="editTodo.delete({{ todo.id }})" class="clickable">❌</span>
+                    <span onclick="editTodo.setDone({{ todo.id }})" class="clickable">✅</span>
                 </div>
             </div>
             {% endfor %} {% if todos|length == 0 %}
@@ -123,8 +129,8 @@
         {% endif %}
     </div>
 
-    <div id="snackbar "></div>
-    <div class="no-mobile ">
+    <div id="snackbar"></div>
+    <div class="no-mobile">
         <h1>Ez a kijelző méret sajnos nem támogatott. Töltse le mobilapplikációnkat!</h1>
     </div>
 

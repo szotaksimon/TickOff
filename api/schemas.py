@@ -1,5 +1,5 @@
 from datetime import date
-from models import Todo, User
+from models import Category, Todo, User
 
 
 def success_response(data):
@@ -8,6 +8,13 @@ def success_response(data):
 
 def error_response(data):
     return {"result": "error", "data": data}
+
+
+def category_schema(category: Category):
+    return {
+        "id": category.id,
+        "name": category.category
+    }
 
 
 def todo_schema(todo: Todo):

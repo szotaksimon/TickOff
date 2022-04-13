@@ -304,9 +304,12 @@ def json_todo_change():
 
     session, user = utils.auth_session()
 
-    todo_id, todo_done, todo_text, category_id, important = utils.validate_json(
-        "id", "done", "todoText", "categoryID", "important"
-    )
+    todo_id,  = utils.validate_json("id")
+
+    todo_done = request.json.get("done")
+    todo_text = request.json.get("todoText")
+    category_id = request.json.get("categoryID")
+    important = request.json.get("important")
 
     todo: Todo = Todo.query.get(todo_id)
 
@@ -316,14 +319,22 @@ def json_todo_change():
     if todo.user_id != user.id:
         abort(401)
 
-    todo.done = todo_done
-    todo.category_id = category_id
-    todo.todo = todo_text
-    todo.important = important
-    if todo_done:
-        todo.end_date = utils.utc_now()
-    else:
-        todo.end_date = None
+    if todo_done is not None:
+        todo.done = todo_done
+        if todo_done:
+            todo.end_date = utils.utc_now()
+        else:
+            todo.end_date = None
+
+    if category_id is not None:
+        todo.category_id = category_id
+
+    if todo_text is not None:
+        todo.todo = todo_text
+
+    if important is not None:
+        todo.important = important
+
 
     db.session.commit()
 
