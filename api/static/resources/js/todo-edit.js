@@ -40,38 +40,38 @@ const editTodo = {
         }
     },
 
+    validate(id) {
 
-    important: false,
-
-    toggleImportant() {
-        this.important = !this.important
-        const indicator = document.querySelector("#todo-edit-important")
-        if (indicator) {
-            indicator.setAttribute("title", this.important ? "Megjelölés nem fontosként" : "Megjelölés fontosként")
-            indicator.innerHTML = this.important ? '🤩' : '😴'
-        }
-    },
-
-    validate() {
-
-        const todoText = document.querySelector("#todo-edit-title").value
+        const todoText = document.querySelector(`#todo-edit-title-${id}`).value
         if (todoText.length === 0) {
             showToast("Add meg a feladat leírását!")
             return
         }
 
-        const categoryID = document.querySelector("#todo-edit-category").value
+        const categoryID = document.querySelector(`#todo-edit-category-${id}`).value
+        const important = document.querySelector(`#todo-edit-important-${id}`).innerHTML === '🤩'
 
         return {
-            id: todo.id,
-            todo: todoText,
-            categoryID: categoryID,
-            important: this.important,
+            id,
+            todoText,
+            categoryID: parseInt(categoryID),
+            important: important,
         }
     },
 
-    async edit() {
-        const data = this.validate()
+
+    toggleImportant(id) {
+        const indicator = document.querySelector(`#todo-edit-important-${id}`)
+        const important = indicator.innerHTML === '🤩'
+        if (indicator) {
+            indicator.setAttribute("title", !important ? "Megjelölés nem fontosként" : "Megjelölés fontosként")
+            indicator.innerHTML = !important ? '🤩' : '😴'
+            this.edit(id)
+        }
+    },
+
+    async edit(id) {
+        const data = this.validate(id)
         if (data) {
             const result = await fetch(window.API_URL + "/todo", {
                 method: "PATCH",

@@ -7,7 +7,7 @@ async function login() {
     const formValues = getFormValues()
     const {result, json} = await sendLoginRequest()
     if(result.status === 200) {
-        window.location.replace(window.API_URL + "/home/day")
+        window.location.replace(window.API_URL + "/home/all")
     } 
     if (json["data"] === "email not verified") {
         toast.className = "show"

@@ -510,7 +510,7 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
-#todo-edit-category {
+.todo-edit-category {
     cursor: pointer;
     border: none;
     outline: none;
@@ -524,7 +524,7 @@ body {
     font-size: 1rem;
 }
 
-#todo-edit-title {
+.todo-edit-title {
     width: 100%;
     border: none;
     outline: none;

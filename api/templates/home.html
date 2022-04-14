@@ -109,12 +109,16 @@
             {% for todo in todos %}
             <div class="todo">
                 <div class="first">
-                    <span onclick="editTodo.toggleImportant()" onchange="editTodo.edit()" class="star" id="todo-edit-important" title="Megjelölés fontosként">{{ '🤩' if todo.important else '😴' }}</span>
-                    <span class="text"><input onchange="editTodo.edit()" type="text" id="todo-edit-title" value="{{ todo.todo }}"></span>
-                    <span class="category" onchange="editTodo.edit()">
-                        <select id="todo-edit-category" name="todo-edit-category">
+                    <span onclick="editTodo.toggleImportant({{ todo.id }})" class="star" id="todo-edit-important-{{ todo.id }}" title="Megjelölés fontosként">{{ '🤩' if todo.important else '😴' }}</span>
+                    <span class="text"><input onblur="editTodo.edit({{ todo.id }})" type="text" class="todo-edit-title" id="todo-edit-title-{{ todo.id }}" value="{{ todo.todo }}"></span>
+                    <span class="category" onchange="editTodo.edit({{ todo.id }})">
+                        <select id="todo-edit-category-{{ todo.id }}" class="todo-edit-category" name="todo-edit-category" value="{{ todo.category_id }}">
                             {% for category in categories %}
-                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% if todo.category_id == category.id %}
+                                    <option selected value="{{ category.id }}">{{ category.name }}</option>
+                                {% else %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </span>
