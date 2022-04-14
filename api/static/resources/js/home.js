@@ -1,6 +1,6 @@
 // TODO: change these in local development
-const API_URL = "http://localhost:5000"
-const LOGIN_URL = "http://127.0.0.1:5500/frontend/login.html"
+const API_URL = window.API_URL
+const LOGIN_URL = window.LOGIN_URL
 const profil_div = document.getElementById("profil")
 const change_username_div = document.getElementById("change-username-div")
 const change_password_div = document.getElementById("change-password-div")
