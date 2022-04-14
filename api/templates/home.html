@@ -109,9 +109,9 @@
             {% for todo in todos %}
             <div class="todo">
                 <div class="first">
-                    <span onclick="editTodo.toggleImportant()" onchange="editTodo.create()" class="star" id="todo-edit-important" title="Megjelölés fontosként">{{ '🤩' if todo.important else '😴' }}</span>
-                    <span class="text"><input onchange="editTodo.create()" type="text" id="todo-edit-title" value="{{ todo.todo }}"></span>
-                    <span class="category" onchange="editTodo.create()">
+                    <span onclick="editTodo.toggleImportant()" onchange="editTodo.edit()" class="star" id="todo-edit-important" title="Megjelölés fontosként">{{ '🤩' if todo.important else '😴' }}</span>
+                    <span class="text"><input onchange="editTodo.edit()" type="text" id="todo-edit-title" value="{{ todo.todo }}"></span>
+                    <span class="category" onchange="editTodo.edit()">
                         <select id="todo-edit-category" name="todo-edit-category">
                             {% for category in categories %}
                                 <option value="{{ category.id }}">{{ category.name }}</option>

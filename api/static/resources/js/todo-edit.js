@@ -62,16 +62,15 @@ const editTodo = {
 
         const categoryID = document.querySelector("#todo-edit-category").value
 
-
         return {
-            important: this.important,
+            id: todo.id,
             todo: todoText,
             categoryID: categoryID,
             important: this.important,
         }
     },
 
-    async create() {
+    async edit() {
         const data = this.validate()
         if (data) {
             const result = await fetch(window.API_URL + "/todo", {
