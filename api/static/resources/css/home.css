@@ -509,8 +509,25 @@ body {
     margin-right: 10px;
 }
 
+#todo-edit-category {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
 #todo-add-deadline {
     font-size: 1rem;
+}
+
+#todo-edit-title {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .todo-list {
@@ -620,6 +637,19 @@ body {
 }
 
 .todo span.deadline {
+    height: 100%;
+    width: 80px;
+    font-size: 16px;
+    color: rgb(87, 87, 87);
+    margin-right: 15px;
+}
+
+.todo-list span.deadline {
+    width: unset !important;
+    margin-right: 5px !important;
+}
+
+.todo-list.todo span.deadline {
     height: 100%;
     width: 80px;
     font-size: 16px;

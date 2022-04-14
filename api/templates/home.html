@@ -19,12 +19,12 @@
     <div class="side">
         <img class="logo" src="{{ url('/resources/img/Logo.svg') }}" alt="logo" id="logo">
         <div class="navigation">
+            <button onclick="navigationButton('all')" class="sidebarButton {{ 'active' if view=='all' else None }}" type="button" id="osszes"><img src="{{ url('/resources/img/osszes.svg') }}" id="osszes-icon">Összes feladat</button><br>
             <button onclick="navigationButton('day')" class="sidebarButton {{ 'active' if view=='day' else None }}" type="button" id="ma"><img src="{{ url('/resources/img/ma.svg') }}" id="ma-icon">Ma</button><br>
             <button onclick="navigationButton('week')" class="sidebarButton {{ 'active' if view=='week' else None }}" type="button" id="ezahet"><img src="{{ url('/resources/img/ezahet.svg') }}" id="ezahet-icon">Ez a hét</button><br>
             <button onclick="navigationButton('important')" class="sidebarButton {{ 'active' if view=='important' else None }}" type="button" id="fontos"><img src="{{ url('/resources/img/fontos.svg') }}" id="fontos-icon">Fontos</button><br>
             <button onclick="navigationButton('done')" class="sidebarButton {{ 'active' if view=='done' else None }}" type="button" id="kesz"><img src="{{ url('/resources/img/kesz.svg') }}" id="kesz-icon">Kész</button><br>
-            <button onclick="navigationButton('postponed')" class="sidebarButton {{ 'active' if view=='postponed' else None }}" type="button" id="halasztott"><img src="{{ url('/resources/img/halasztott.svg') }}" id="halasztott-icon">Halasztott</button><br>
-            <button onclick="navigationButton('all')" class="sidebarButton {{ 'active' if view=='all' else None }}" type="button" id="osszes"><img src="{{ url('/resources/img/osszes.svg') }}" id="osszes-icon">Összes feladat</button><br>
+            <button onclick="navigationButton('postponed')" class="sidebarButton {{ 'active' if view=='postponed' else None }}" type="button" id="halasztott"><img src="{{ url('/resources/img/halasztott.svg') }}" id="halasztott-icon">Késésben</button><br>
             <div class="spacer"></div>
             <button type="button" id="beallitasok"><img src="{{ url('/resources/img/beallitas.svg') }}" id="kesz-icon">Beállítások</button><br>
             <button type="button" id="kijelentkezes" onclick="logout()"><img src="{{ url('/resources/img/kijelentkezes.svg') }}" id="halasztott-icon">Kijelentkezés</button><br>
@@ -109,16 +109,20 @@
             {% for todo in todos %}
             <div class="todo">
                 <div class="first">
-                    <span class="star" title="{{ 'Megjelölés fontosként' if not todo.important else 'Megjelölés nem fontosként' }} ">
-                        {{ '🤩' if todo.important else '😴' }}
+                    <span onclick="editTodo.toggleImportant()" onchange="editTodo.create()" class="star" id="todo-edit-important" title="Megjelölés fontosként">{{ '🤩' if todo.important else '😴' }}</span>
+                    <span class="text"><input onchange="editTodo.create()" type="text" id="todo-edit-title" value="{{ todo.todo }}"></span>
+                    <span class="category" onchange="editTodo.create()">
+                        <select id="todo-edit-category" name="todo-edit-category">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
                     </span>
-                    <span class="text">{{todo.todo}}</span>
-                    <span class="category ">{{todo.category}}</span>
                 </div>
                 <div class="second">
                     <span class="creationDate">📆 {{todo.creation_date_text}}</span>
                     <span class="arrow">➞</span>
-                    <span class="deadline ">⏰ {{todo.deadline_text}}</span>
+                    <span class="deadline">⏰ {{todo.deadline_text}}</span>
                     <span onclick="editTodo.delete({{ todo.id }})" class="clickable">❌</span>
                     <span onclick="editTodo.setDone({{ todo.id }})" class="clickable">✅</span>
                 </div>
