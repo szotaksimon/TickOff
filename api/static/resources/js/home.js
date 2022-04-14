@@ -57,7 +57,7 @@ async function showProfileField() {
         let year = born_date.getFullYear()
         let month = born_date.getMonth() + 1
         let day = born_date.getDay()
-        document.getElementById("borndate").innerHTML += year + "." + month + "." + day + "."
+        document.getElementById("borndate").innerHTML += born_date.toLocaleDateString("hu") //year + "." + month + "." + day + "."
         let register_date = new Date(user.data.register_date * 1000)
         year = register_date.getFullYear()
         month = register_date.getMonth() + 1
