@@ -1,5 +1,7 @@
-from flask import request, make_response, abort, redirect
+from flask import Flask, request, make_response, abort, redirect
 from time import sleep, time
+
+from sqlalchemy import false
 from schemas import success_response, todo_schema, user_schema
 import config
 
@@ -102,11 +104,13 @@ def json_register():
 
     salt = utils.random_token()
     password_hash = utils.salted_hash(password, salt)
+    admin = False
 
     email_verification_token = utils.random_token()
 
     user = User(
         register_date=int(time()),
+        admin=admin,
         email=email,
         username=username,
         password_hash=password_hash,
@@ -493,3 +497,31 @@ def json_change_data():
     db.session.commit()
 
     return success_response("data changed successfully")
+
+
+# ADMIN ASZTALI ALKALMAZÁS ÁLTAL HASZNÁLT ENDPOINT
+
+@app.route("/all-user", methods=["GET"])
+def json_get_all_user():
+    session, user = utils.auth_session()
+
+
+    if user.admin:
+        users: "list[User]" = User.query.all()
+        return success_response([user_schema(u) for u in users])
+    else:
+        abort(401, "permission denied")
+
+    
+@app.route("/all-todo", methods=["GET"])
+def json_get_all_todo():
+    session, user = utils.auth_session()
+
+
+    if user.admin:
+        todos: "list[Todo]" = Todo.query.all()
+        return success_response([todo_schema(t) for t in todos])
+    else:
+        abort(401, "permission denied")
+
+    

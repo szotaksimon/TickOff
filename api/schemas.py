@@ -38,6 +38,7 @@ def todo_schema(todo: Todo):
 def user_schema(user: User):
     return {
         "id": user.id,
+        "admin": user.admin,
         "username": user.username,
         "email": user.email,
         "first_name": user.first_name,

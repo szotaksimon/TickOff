@@ -6,6 +6,7 @@ from sqlalchemy.dialects.mysql import INTEGER, BIGINT, VARCHAR, CHAR
 
 class User(db.Model):
     id = db.Column(INTEGER, primary_key=True, autoincrement=True)
+    admin = db.Column(BOOLEAN)
     username = db.Column(VARCHAR(128), unique=True)
     email = db.Column(VARCHAR(128), unique=True)
     password_hash = db.Column(CHAR(64), nullable=True)
