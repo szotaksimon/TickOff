@@ -525,23 +525,24 @@ def json_get_all_todo():
     else:
         abort(401, "permission denied")
     
-@app.route("delete-user", methods=["DELETE"])
-def delete_user():
+@app.route("/delete-user", methods=["DELETE"])
+def json_delete_user():
     session, user = utils.auth_session()
     user_id, = utils.validate_json(
         "id"
     )
-    user: User = User.query.get(user_id)
+    user_to_be_deteled: User = User.query.get(user_id)
 
     if user is None:
         abort(400, "invalid user id")
     
     if user.admin:
-        db.session.delete(user)
+        db.session.delete(user_to_be_deteled)
         db.session.commit()
         return success_response("User deleted")
-
+    
     else:
         abort(401, "permission denied")
+
 
     
