@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response, abort, redirect
 from time import sleep, time
+from requests import session
 
 from sqlalchemy import false
 from schemas import success_response, todo_schema, user_schema
@@ -521,6 +522,25 @@ def json_get_all_todo():
     if user.admin:
         todos: "list[Todo]" = Todo.query.all()
         return success_response([todo_schema(t) for t in todos])
+    else:
+        abort(401, "permission denied")
+    
+@app.route("delete-user", methods=["DELETE"])
+def delete_user():
+    session, user = utils.auth_session()
+    user_id, = utils.validate_json(
+        "id"
+    )
+    user: User = User.query.get(user_id)
+
+    if user is None:
+        abort(400, "invalid user id")
+    
+    if user.admin:
+        db.session.delete(user)
+        db.session.commit()
+        return success_response("User deleted")
+
     else:
         abort(401, "permission denied")
 
