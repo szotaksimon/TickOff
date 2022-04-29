@@ -1,31 +1,18 @@
-# Fejlesztői szerver beállítása
+# Fejlesztői szerver futtatása
 
-- `Windowson`
-    - `Importáld a project.sql file-t`
-    - `Cloneozd ezt a repot`
-    - `A config.py-ben szedd ki a kommentet a DB_URI = 'mysql://root@localhost/project' elől, és->`
-    - `kommenteld ki az alatta lévő DB_URI elérési utat`
-    - `Terminálba: virtualenv venv`
-    - `Futtassa a powershelt adminisztrátorként, majd->`
-    - `set-executionpolicy remotesigned, vagy->` 
-    - `Set-ExecutionPolicy Unrestricted -Scop CurrentUser`
-    - `Szükséges csomagok telepítése`
-        - `venv/Scripts/activate`
-        - `pip install -r requirements.txt`
-    - `Szerver futtatása:`
-        - `flask run / flask run --reload`
-    
-- `Linuxon`
-    - `Importáld a project.sql file-t`
-    - `Cloneozd ezt a repot`
-    - `A config.py-ben szedd ki a kommentet a DB_URI = 'mysql://root@localhost/project' elől, és->`
-    - `kommenteld ki az alatta lévő DB_URI elérési utat`
-    - `Terminálba: virtualenv venv`
-    - `Szükséges csomagok telepítése`
-        - `source venv/bin/activate`
-        - `pip install -r requirements.txt`
-    - `Szerver futtatása:`
-        - `flask run / flask run --reload`
+- `pullold ezt a repot`
+- `importáld a project.sql file-t`
+- `.env-ben írd át a DB_URI-t erre: mysql://root@localhost/project`
+- `api mappán belül, terminál: virtualenv venv`
+- `api mappán belül, terminál: venv\scripts\activate` `linuxon: source venv\bin\activate`
+- `válaszd ki a meglfelelő python interpretert a venv mappából`
+- `api mappán belül, terminál: pip install -r requirements.txt`
+- `.env-ben api és app url-t írd át erre:` `(ha eleve nem ez lenne)`
+    - `APP_URL=http://localhost:5500/frontend`
+    - `API_URL=http://localhost:5000`
+- 
+- `api mappán belül, terminál: flask run --reload`
+
     
 
 
